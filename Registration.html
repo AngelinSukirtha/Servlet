@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<style>
+ input[type=text], input[type=password],input[type=email]
+        {
+          width: 60%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          border: 2px solid rgb(190, 224, 245);
+          border-radius: 4px;
+        }
+        input[type=submit]
+        {
+          background-color:rgb(135, 200, 241);
+          border: none;
+          color: black;
+          padding: 16px 32px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+.center {
+         width: 50%;
+         padding: 10px;
+         text-align: center;
+         margin: auto;
+         box-shadow:4px 4px 8px 8px grey;
+        }
+</style>
+</head>
+<body>
+<center><h2 style="color: crimson;">REGISTRATION</h2>
+<h3>Fill this form to create an account</h3></center>
+<div class="center">
+<form action="RegistrationForm" method="post">
+First Name:<br><input type="text" name="fname" placeholder="Enter your First Name"><br><br>
+Last Name:<br><input type="text" name="lname" placeholder="Enter your Last Name"><br><br>
+User Name:<br><input type="text" name="uname" placeholder="Enter your User Name"><br><br>
+Password:<br><input type="password" name="password" placeholder="Enter your Password"><br><br>
+Confirm Password:<br><input type="text" name="cpassword" placeholder="Enter your Password"><br><br>
+Email:<br><input type="email" name="email" placeholder="Eg:angelin2002@gmail.com"><br><br>
+Gender:<br><input type="text" name="gender" placeholder="Male/Female"><br><br>
+D:O:B:<br><input type="text" name="dob" placeholder="Enter your birth date"><br><br>
+<input type="submit" value="submit">
+</form>
+</div>
+</body>
+</html>
