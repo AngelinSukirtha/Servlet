@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<style>
+ input[type=text], input[type=password],input[type=email]
+        {
+          width: 60%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          border: 2px solid rgb(192, 192, 192);
+          border-radius: 4px;
+        }
+        input[type=submit]
+        {
+          background-color:rgb(135, 200, 241);
+          border: none;
+          color: black;
+          padding: 16px 32px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+.center {
+         width: 50%;
+         padding: 10px;
+         text-align: center;
+         margin: auto;
+         box-shadow:4px 4px 8px 8px grey;
+        }
+</style>
+</head>
+<body style="background-color:lightblue">
+<div class="center">
+<h2 style="color: crimson;">REGISTRATION</h2>
+<h3>Fill this form to create an account</h3>
+<form action="RegistrationForm" method="post">
+<b>First Name:</b><br><input type="text" name="fname" placeholder="Enter your First Name" required><br><br>
+<b>Last Name:</b><br><input type="text" name="lname" placeholder="Enter your Last Name" required><br><br>
+<b>User Name:</b><br><input type="text" name="uname" placeholder="Enter your User Name" required><br><br>
+<b>Password:</b><br><input type="password" name="password" placeholder="Enter your Password" required><br><br>
+<b>Confirm Password:</b><br><input type="text" name="cpassword" placeholder="Enter your Password" minlength="6" maxlength="15" required><br><br>
+<b>Email:</b><br><input type="email" name="email" placeholder="Eg:angelin2002@gmail.com" required><br><br>
+<b>Phone Number:</b><br><input type="text" name="phoneNo" placeholder="9876567876" maxlength="10" required><br><br>
+<b>Gender:</b><br><input type="text" name="gender" required><br><br>
+<input type="submit" value="submit">
+</form>
+</div>
+</body>
+</html>
