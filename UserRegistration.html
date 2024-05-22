@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<style>
+input[type=text], input[type=email], input[type=password] {
+	width: 60%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid rgb(192, 192, 192);
+	border-radius: 4px;
+}
+
+input[type=submit] {
+	background-color: rgb(135, 200, 241);
+	border: none;
+	color: black;
+	padding: 16px 32px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.center {
+	width: 50%;
+	padding: 10px;
+	text-align: center;
+	margin: auto;
+	box-shadow: 4px 4px 8px 8px grey;
+}
+</style>
+</head>
+<body style="background-color: lightblue">
+	<div class="center">
+		<h2 style="color: crimson;">REGISTRATION</h2>
+		<h3>Fill this form to create an account</h3>
+		<form action="RegistrationServlet" method="post">
+			<b>Name:</b><br> <input type="text" name="name"
+				placeholder="Enter your Name" required><br> <br> <b>Email:</b><br>
+			<input type="email" name="mailId"
+				placeholder="Eg:angelin2002@gmail.com" required><br> <br>
+			<b>Phone Number:</b><br> <input type="text" name="phoneNumber"
+				placeholder="9876567876" maxlength="10" required><br> <br>
+			<input type="submit" value="submit">
+		</form>
+	</div>
+</body>
+</html>
