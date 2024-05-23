@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registration Form</title>
+<title>Delete</title>
 <style>
 input[type=text], input[type=email], input[type=password] {
 	width: 60%;
@@ -33,15 +33,11 @@ input[type=submit] {
 </head>
 <body style="background-color: lightblue; margin-top: 70px;">
 	<div class="center">
-		<h2 style="color: crimson;">REGISTRATION</h2>
-		<h3>Fill this form to create an account</h3>
-		<form action="RegistrationServlet" method="post">
+		<h2 style="color: crimson;">DELETE USER</h2>
+		<h3>Enter the name to delete account</h3>
+		<form action="DeleteUser" method="post">
 			<b>Name:</b><br> <input type="text" name="name"
-				placeholder="Enter your Name" required><br> <br> <b>Email:</b><br>
-			<input type="email" name="mailId"
-				placeholder="Eg:angelin2002@gmail.com" required><br> <br>
-			<b>Phone Number:</b><br> <input type="text" name="phoneNumber"
-				placeholder="9876567876" maxlength="10" required><br> <br>
+				placeholder="Enter your Name" required><br> <br> 
 			<input type="submit" value="submit">
 		</form>
 	</div>

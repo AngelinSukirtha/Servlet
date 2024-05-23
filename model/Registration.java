@@ -5,8 +5,8 @@ public class Registration {
 	String name;
 	String mailId;
 	String phoneNumber;
-	
-    public Registration(int id) {
+
+	public Registration(int id) {
 		super();
 		this.id = id;
 	}
@@ -19,7 +19,6 @@ public class Registration {
 		this.id = id;
 	}
 
-	
 	public Registration(String name, String mailId, String phoneNo) {
 		super();
 		this.name = name;

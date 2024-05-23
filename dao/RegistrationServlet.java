@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Servlet implementation class RegistrationServlet
  */
@@ -36,7 +37,6 @@ public class RegistrationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -53,6 +53,7 @@ public class RegistrationServlet extends HttpServlet {
 		r.setMailId(mailId);
 		String phoneNumber = request.getParameter("phoneNumber");
 		r.setphoneNumber(phoneNumber);
+		
 		try {
 			registrationImp.insert(r);
 			PrintWriter writer = response.getWriter();
@@ -61,20 +62,6 @@ public class RegistrationServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		try {
-			registrationImp.delete(r);
-			PrintWriter writer = response.getWriter();
-			writer.println(r.getName() + "added");
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			registrationImp.update(name, mailId);
-			PrintWriter writer = response.getWriter();
-			writer.println(r.getName() + " added\n" + r.getMailId() + " added\n" + r.getphoneNumber() + " added\n");
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
 		try {
 			listUser(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
@@ -85,7 +72,9 @@ public class RegistrationServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
-	}
+
+			}
+
 	public void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, SQLException, ClassNotFoundException, ServletException {
 		List<Registration> list = registrationImp.readA();
@@ -93,9 +82,8 @@ public class RegistrationServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
 	}
-}
 
-//		String action = request.getServletPath();
+
 //		switch (action) {
 //		case "/new":
 //			showNewForm(request, response);
@@ -155,13 +143,7 @@ public class RegistrationServlet extends HttpServlet {
 //		response.sendRedirect("list");
 //	}
 //
-//	public void deleteUser(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException, ClassNotFoundException {
-//		int id = Integer.parseInt(request.getParameter("id"));
-//		registrationImp.delete(id);
-//		response.sendRedirect("list");
-//	}
-//
+
 //	public void showEdit(HttpServletRequest request, HttpServletResponse response)
 //			throws IOException, SQLException, ClassNotFoundException, ServletException {
 //		int id = Integer.parseInt(request.getParameter("id"));
@@ -170,23 +152,5 @@ public class RegistrationServlet extends HttpServlet {
 //		request.setAttribute("r", register);
 //		dispatcher.forward(request, response);
 //	}
-//
-//	public void updateUser(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException, ClassNotFoundException, ServletException {
-//		// int id = Integer.parseInt(request.getParameter("id"));
-//		String name = request.getParameter("name");
-//		String mailId = request.getParameter("mailId");
-//		String phoneNumber = request.getParameter("phoneNumber");
-//		Registration register = new Registration(name, mailId, phoneNumber);
-//		registrationImp.update(register);
-//		response.sendRedirect("list");
-//	}
-//
-//	public void listUser(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException, ClassNotFoundException, ServletException {
-//		List<Registration> list = registrationImp.readA();
-//		request.setAttribute("list", list);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
-//		dispatcher.forward(request, response);
-//	}
-//}
+
+}

@@ -17,7 +17,9 @@
 
 table {
 	margin-top: 70px;
-	margin-left: 430px;
+	margin-left: 150px;
+	border-collapse: collapse;
+	width: 80%;
 }
 </style>
 </head>
@@ -30,17 +32,29 @@ table {
 			<th style="color: white;">Name</th>
 			<th style="color: white;">Email</th>
 			<th style="color: white;">Phone Number</th>
+			<th style="color: white;" colspan="2">Actions</th>
 		</tr>
 		<%
 		List<Registration> list = (ArrayList<Registration>) request.getAttribute("list");
 		if (list != null) {
 			for (Registration r : list) {
 		%>
-		<tr
-			style="color: black; background-color: rgb(167, 167, 193); text-align: center;">
+		<tr style="color: black; background-color: white; text-align: center;">
 			<td><%=r.getName()%></td>
 			<td><%=r.getMailId()%></td>
 			<td><%=r.getphoneNumber()%></td>
+			<td><input type="hidden" name="action" value="update"> <input
+				type="hidden" name="name" value="<%=r.getName()%>">
+				<button type="submit"
+					style="color: black; background-color: white; border: none"
+					onClick="location.href= 'Update.html?name=<%=r.getName()%>'">Update</button>
+			</td>
+			<td><input type="hidden" name="action" value="delete"> <input
+				type="hidden" name="name" value="<%=r.getName()%>">
+				<button type="submit"
+					style="color: black; background-color: white; border: none"
+					onClick="location.href= 'Delete.html?name=<%=r.getName()%>'">Delete</button>
+			</td>
 		</tr>
 		<%
 		}
