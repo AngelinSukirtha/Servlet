@@ -43,6 +43,7 @@ public class RegistrationImp implements RegistrationDAO {
 		return list;
 	}
 
+	
 	public boolean delete(String name) throws ClassNotFoundException, SQLException {
 		boolean rowDeleted;
 		String delete = "delete from userRegistration where name=?";

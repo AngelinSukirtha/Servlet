@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Servlet implementation class RegistrationServlet
  */
@@ -53,7 +52,7 @@ public class RegistrationServlet extends HttpServlet {
 		r.setMailId(mailId);
 		String phoneNumber = request.getParameter("phoneNumber");
 		r.setphoneNumber(phoneNumber);
-		
+
 		try {
 			registrationImp.insert(r);
 			PrintWriter writer = response.getWriter();
@@ -72,8 +71,7 @@ public class RegistrationServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
-
-			}
+	}
 
 	public void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, SQLException, ClassNotFoundException, ServletException {
@@ -82,7 +80,6 @@ public class RegistrationServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
 	}
-
 
 //		switch (action) {
 //		case "/new":

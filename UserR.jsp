@@ -61,5 +61,6 @@ table {
 		}
 		%>
 	</table>
+	
 </body>
 </html>

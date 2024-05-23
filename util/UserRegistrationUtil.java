@@ -12,5 +12,4 @@ public class UserRegistrationUtil {
 		return connection;
 	}
 
-
 }

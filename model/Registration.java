@@ -5,6 +5,7 @@ public class Registration {
 	String name;
 	String mailId;
 	String phoneNumber;
+	
 
 	public Registration(int id) {
 		super();

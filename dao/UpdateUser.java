@@ -77,7 +77,6 @@ public class UpdateUser extends HttpServlet {
 				break;
 			}
 		}
-
 	}
 
 	public void updateUser(HttpServletRequest request, HttpServletResponse response)
@@ -87,7 +86,6 @@ public class UpdateUser extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		Registration register = new Registration(name, mailId, phoneNumber);
 		registrationImp.update(register);
-		response.sendRedirect("list");
+		response.sendRedirect("UserR.jsp");
 	}
-
 }

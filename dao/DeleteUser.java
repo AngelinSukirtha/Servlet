@@ -97,5 +97,4 @@ public class DeleteUser extends HttpServlet {
 		}
 		doPost(request, response);
 	}
-
 }
