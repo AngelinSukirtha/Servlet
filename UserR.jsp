@@ -43,24 +43,29 @@ table {
 			<td><%=r.getName()%></td>
 			<td><%=r.getMailId()%></td>
 			<td><%=r.getphoneNumber()%></td>
-			<td><input type="hidden" name="action" value="update"> <input
+			<%-- <td><input type="hidden" name="action" value="update"> <input
 				type="hidden" name="name" value="<%=r.getName()%>">
 				<button type="submit"
 					style="color: black; background-color: white; border: none"
 					onClick="location.href= 'Update.html?name=<%=r.getName()%>'">Update</button>
-			</td>
-			<td><input type="hidden" name="action" value="delete"> <input
-				type="hidden" name="name" value="<%=r.getName()%>">
-				<button type="submit"
-					style="color: black; background-color: white; border: none"
-					onClick="location.href= 'Delete.html?name=<%=r.getName()%>'">Delete</button>
-			</td>
+			</td> --%>
+			<td><input type="hidden" name="name" value="<%=r.getName()%>">
+				<a href="Update.html?editMailId=<%=r.getMailId()%>">
+					<button type="button" style="border:none; background-color:white">Update</button>
+			</a></td>
+			<td><form action="DeleteUser" method="get">
+					<input type="hidden" name="action" value="Delete"> <input
+						type="hidden" name="delete" value="<%=r.getName()%>">
+					<button type="submit" style="border:none; background-color:white" title="delete">Delete</button>
+				</form></td>
 		</tr>
+
+
 		<%
 		}
 		}
 		%>
 	</table>
-	
+
 </body>
 </html>
