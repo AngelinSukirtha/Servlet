@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.model.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,6 +50,9 @@ public class RegistrationServlet extends HttpServlet {
 		doGet(request, response);
 		System.out.println("do post");
 		String name = request.getParameter("name");
+//		System.out.println("Welcome " + name);
+//		Cookie ck = new Cookie("name", name);
+//		response.addCookie(ck);
 		r.setName(name);
 		String mailId = request.getParameter("mailId");
 		r.setMailId(mailId);
@@ -55,6 +61,8 @@ public class RegistrationServlet extends HttpServlet {
 
 		try {
 			registrationImp.insert(r);
+			HttpSession session = request.getSession();
+			session.setAttribute("name", name);
 			PrintWriter writer = response.getWriter();
 			writer.println(r.getName() + " added\n" + r.getMailId() + " added\n" + r.getphoneNumber() + " added\n");
 		} catch (ClassNotFoundException | SQLException e) {
@@ -69,8 +77,10 @@ public class RegistrationServlet extends HttpServlet {
 
 		list.add(new Registration(name, mailId, phoneNumber));
 		request.setAttribute("list", list);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 	public void listUser(HttpServletRequest request, HttpServletResponse response)
@@ -80,74 +90,5 @@ public class RegistrationServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
 		dispatcher.forward(request, response);
 	}
-
-//		switch (action) {
-//		case "/new":
-//			showNewForm(request, response);
-//			break;
-//		case "/insert":
-//			try {
-//				insertUser(request, response);
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//			break;
-//		case "/delete":
-//			try {
-//				deleteUser(request, response);
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//			break;
-//		case "/edit":
-//			try {
-//				showEdit(request, response);
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//			break;
-//		case "/update":
-//			try {
-//				updateUser(request, response);
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//			break;
-//		default:
-//			try {
-//				listUser(request, response);
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//			break;
-//		}
-//
-//	}
-//
-//	public void showNewForm(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
-//		dispatcher.forward(request, response);
-//	}
-//
-//	public void insertUser(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException, ClassNotFoundException {
-//		String name = request.getParameter("name");
-//		String mailId = request.getParameter("mailId");
-//		String phoneNumber = request.getParameter("phoneNumber");
-//		Registration register = new Registration(name, mailId, phoneNumber);
-//		registrationImp.insert(register);
-//		response.sendRedirect("list");
-//	}
-//
-
-//	public void showEdit(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, SQLException, ClassNotFoundException, ServletException {
-//		int id = Integer.parseInt(request.getParameter("id"));
-//		Registration register = registrationImp.read(id);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
-//		request.setAttribute("r", register);
-//		dispatcher.forward(request, response);
-//	}
 
 }

@@ -11,22 +11,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.model.Registration;
 
 /**
- * Servlet implementation class UpdateUser
+ * Servlet implementation class SearchServlet
  */
-@WebServlet("/UpdateUser")
-public class UpdateUser extends HttpServlet {
+@WebServlet("/SearchServlet")
+public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Registration register = new Registration();
-	RegistrationImp registrationImp = new RegistrationImp();
+	Registration r = new Registration();
+	static RegistrationImp registrationImp = new RegistrationImp();
 	List<Registration> list = new ArrayList<Registration>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateUser() {
+	public SearchServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -38,40 +39,30 @@ public class UpdateUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
-		String name = request.getParameter("name");
-		register.setName(name);
-		String mailId = request.getParameter("mailId");
-		register.setMailId(mailId);
-		String phoneNumber = request.getParameter("phoneNumber");
-		register.setphoneNumber(phoneNumber);
- 
-		try {
-			registrationImp.update(register);
+		String name = request.getParameter("search");
+		System.out.println();
 
+		try {
+			request.setAttribute("list", registrationImp.search(name));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			list = registrationImp.readA();
 
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-		request.setAttribute("list", list);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("UserR.jsp");
-		dispatcher.forward(request, response);
+		RequestDispatcher dispatcher1 = request.getRequestDispatcher("UserR.jsp");
+		dispatcher1.forward(request, response);
 	}
+
 }

@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.Registration;
-import com.util.UserRegistrationUtil;
+import com.util.UserUtil;
 
 public class RegistrationImp implements RegistrationDAO {
 	public void insert(Registration r) throws ClassNotFoundException, SQLException {
-		Connection connection = UserRegistrationUtil.getConnection();
+		Connection connection = UserUtil.getConnection();
 		String registration = "insert into userRegistration(name, mailId, phoneNumber)values(?,?,?)";
 		PreparedStatement p = connection.prepareStatement(registration);
 		p.setString(1, r.getName());
@@ -25,7 +25,7 @@ public class RegistrationImp implements RegistrationDAO {
 
 	public List<Registration> readA() throws ClassNotFoundException, SQLException {
 		List<Registration> list = new ArrayList<>();
-		Connection connection = UserRegistrationUtil.getConnection();
+		Connection connection = UserUtil.getConnection();
 		String readA = "select * from userRegistration";
 		PreparedStatement p = connection.prepareStatement(readA);
 		try {
@@ -43,11 +43,10 @@ public class RegistrationImp implements RegistrationDAO {
 		return list;
 	}
 
-	
 	public boolean delete(String name) throws ClassNotFoundException, SQLException {
 		boolean rowDeleted;
 		String delete = "delete from userRegistration where name=?";
-		try (Connection connection = UserRegistrationUtil.getConnection();
+		try (Connection connection = UserUtil.getConnection();
 				PreparedStatement p = connection.prepareStatement(delete);) {
 			p.setString(1, name);
 			rowDeleted = p.executeUpdate() > 0;
@@ -59,7 +58,7 @@ public class RegistrationImp implements RegistrationDAO {
 
 	public void update(Registration registration) throws ClassNotFoundException, SQLException {
 		String update = "update userRegistration set mailId=?, phoneNumber=? where name=?";
-		try (Connection connection = UserRegistrationUtil.getConnection();
+		try (Connection connection = UserUtil.getConnection();
 				PreparedStatement p = connection.prepareStatement(update)) {
 			p.setString(1, registration.getMailId());
 			p.setString(2, registration.getphoneNumber());
@@ -70,4 +69,28 @@ public class RegistrationImp implements RegistrationDAO {
 			connection.close();
 		}
 	}
+
+	public List<Registration> search(String name) throws ClassNotFoundException, SQLException {
+		List<Registration> users = new ArrayList<>();
+		System.out.println(name);
+		Connection connection = UserUtil.getConnection();
+		String search = "select * from userRegistration where name=?";
+		PreparedStatement p = connection.prepareStatement(search);
+		p.setString(1, name);
+		try {
+			System.out.println(p);
+
+			ResultSet rows = p.executeQuery();
+			while (rows.next()) {
+				String Name = rows.getString("name");
+				String mailId = rows.getString("mailId");
+				String PhoneNumber = rows.getString("phoneNumber");
+				users.add(new Registration(Name, mailId, PhoneNumber));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
 }

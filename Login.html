@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LOGIN</title>
+<style>
+body {
+	background-image:
+		url('https://marketplace.canva.com/EAE6nxrydxw/1/0/1600w/canva-rose-pink-purple-organic-blob-shapes-beautiful-desktop-wallpaper-QWyrCrYYNMI.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+input[type=text], input[type=email] {
+	width: 60%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid rgb(190, 224, 245);
+	border-radius: 4px;
+}
+
+input[type=submit] {
+	background-color: rgb(137, 182, 210);
+	border: none;
+	color: black;
+	padding: 16px 32px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+select {
+	width: 60%;
+	padding: 12px 20px;
+	border: 2px solid rgba(3, 99, 11, 0.317);
+	border-radius: 4px;
+	background-color: whitesmoke;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+	width: 40%;
+	box-shadow: 4px 4px 8px 8px grey;
+	padding: 20px;
+}
+</style>
+</head>
+<body style="background-color: aliceblue;">
+	<h2 style="color: crimson">
+		<center>LOGIN</center>
+	</h2>
+	<form action="LoginServlet" method="post">
+		<div class="center">
+			<b>User Name:</b><br> <input type="text" id="userName"
+				name="userName" placeholder="Eg:AngelinSukirtha18" required><br>
+			<br> <br> <b>Email:</b><br> <input type="email"
+				name="email" placeholder="Eg:angelin2002@gmail.com"><br>
+			<br> <input type="submit" value="Submit">
+	</form>
+	</div>
+
+</body>
