@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 //import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,9 +51,6 @@ public class RegistrationServlet extends HttpServlet {
 		doGet(request, response);
 		System.out.println("do post");
 		String name = request.getParameter("name");
-//		System.out.println("Welcome " + name);
-//		Cookie ck = new Cookie("name", name);
-//		response.addCookie(ck);
 		r.setName(name);
 		String mailId = request.getParameter("mailId");
 		r.setMailId(mailId);
@@ -63,6 +61,14 @@ public class RegistrationServlet extends HttpServlet {
 			registrationImp.insert(r);
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
+
+			Cookie nameCookie = new Cookie("name", name);
+			Cookie mailIdCookie = new Cookie("mailId", mailId);
+			Cookie phoneNumberCookie = new Cookie("phoneNumber", phoneNumber);
+
+			response.addCookie(nameCookie);
+			response.addCookie(mailIdCookie);
+			response.addCookie(phoneNumberCookie);
 			PrintWriter writer = response.getWriter();
 			writer.println(r.getName() + " added\n" + r.getMailId() + " added\n" + r.getphoneNumber() + " added\n");
 		} catch (ClassNotFoundException | SQLException e) {
@@ -71,6 +77,9 @@ public class RegistrationServlet extends HttpServlet {
 
 		try {
 			listUser(request, response);
+			List<Registration> list = new ArrayList<>();
+			list.add(r);
+			request.setAttribute("list", list);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
